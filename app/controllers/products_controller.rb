@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-    @measurement_options = Product::MEASUREMENT
+    @measurement_options = Product::MEASUREMENT # ieu naon
   end
 
   def create

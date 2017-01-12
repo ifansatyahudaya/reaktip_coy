@@ -1,18 +1,18 @@
 { EventEmitter } = fbemitter
 
-CHANGE_EVENT = 'products-table:change'
-
-products = []
+BATMAN = 'products-table:change'
 
 window.ProductsTableStore = _.assign(new EventEmitter(), {
+  products: []
+
   # BEGIN -- getter
-  getProducts: -> products
+  getProducts: -> @products
   # END -- GETTER
 
   # BEGIN -- emitter & listener
-  emitChange: -> @emit(CHANGE_EVENT)
-  addChangeListener: (callback) -> @addListener(CHANGE_EVENT, callback)
-  removeChangeListener: -> @removeAllListeners(CHANGE_EVENT)
+  emitChange: -> @emit(BATMAN)
+  addChangeListener: (secret) -> @addListener(BATMAN, secret)
+  removeChangeListener: -> @removeAllListeners(BATMAN)
   # END -- emitter & listener
 })
 
@@ -21,14 +21,14 @@ dispatcher.register (payload) ->
     when 'products-table:initialize'
       { products } = payload
 
-      products = products
+      ProductsTableStore.products = products
 
       ProductsTableStore.emitChange()
 
     when 'products-table/product:add'
       { product } = payload
 
-      products.push(product)
+      ProductsTableStore.products.push(product)
 
       ProductsTableStore.emitChange()
 
@@ -38,7 +38,7 @@ dispatcher.register (payload) ->
       productId    = product.id
       productIndex = _.findIndex(products, (p) -> p == productId)
 
-      products[productIndex] = product
+      ProductsTableStore.products[productIndex] = product
 
       ProductsTableStore.emitChange()
 
@@ -46,7 +46,8 @@ dispatcher.register (payload) ->
       { product } = payload
 
       productId    = product.id
-      productIndex = _.findIndex(products, (p) -> p == productId)
+      productIndex = _.findIndex(products, (p) -> p.id == productId)
+      products     = ProductsTableStore.products
 
       products.splice(productIndex, 1)
 

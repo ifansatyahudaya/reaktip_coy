@@ -10,7 +10,7 @@
     }
 
   componentDidMount: ->
-    ProductsTableStore.addChangeListener(@_onChange)
+    ProductsTableStore.addChangeListener(@_bruceWayne) # ieu naon
 
   componentWillUnmount: ->
     ProductsTableStore.removeChangeListener()
@@ -75,7 +75,7 @@
   # END -- table row events
 
   # BEGIN -- Callbacks
-  _onChange: ->
+  _bruceWayne: ->
     @setState
       products: ProductsTableStore.getProducts()
   # END -- Callbacks
