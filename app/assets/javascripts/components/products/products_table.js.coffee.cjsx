@@ -10,7 +10,7 @@
     }
 
   componentDidMount: ->
-    ProductsTableStore.addChangeListener(@_bruceWayne) # ieu naon
+    ProductsTableStore.addChangeListener(@_bruceWayne)
 
   componentWillUnmount: ->
     ProductsTableStore.removeChangeListener()
