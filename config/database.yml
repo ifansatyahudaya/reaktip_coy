@@ -1,0 +1,18 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  host: localhost
+  username: root
+  password: 123456
+
+development:
+  <<: *default
+  database: hasemeng_development
+
+test:
+  <<: *default
+  database: hasemeng_test
+
+production:
+  <<: *default
+  database: hasemeng

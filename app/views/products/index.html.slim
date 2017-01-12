@@ -1,0 +1,12 @@
+= react_component 'ProductsIndexPage', csrfParamName: request_forgery_protection_token, csrfToken: form_authenticity_token
+
+javascript:
+  dispatcher.dispatch({
+    actionType: 'products-form:initialize',
+    measurementOptions: #{@measurement_options.to_json.html_safe}
+  })
+
+  dispatcher.dispatch({
+    actionType: 'products-table:initialize',
+    products: #{@products.to_json.html_safe}
+  })
