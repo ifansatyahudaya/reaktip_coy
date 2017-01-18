@@ -48,7 +48,7 @@ dispatcher.register (payload) ->
       { attributes } = payload
 
       product = ProductsFormStore.product
-      ProductsFormStore.product = _.assign(product, attributes)
+      ProductsFormStore.product = _.assign(product, attributes) # tah ieu bisa nga on change lebih dari 4 parameters
 
       ProductsFormStore.emitChange()
 

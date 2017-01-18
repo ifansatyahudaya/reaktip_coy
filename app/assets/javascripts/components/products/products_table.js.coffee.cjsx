@@ -66,7 +66,7 @@
       confirmButtonText: "Yes, delete it!"
       closeOnConfirm: true
     }, (isConfirmed) =>
-      @_removeProduct(product)
+      @_removeProduct(product) if isConfirmed
 
   onClickEditItem: (product) ->
     dispatcher.dispatch

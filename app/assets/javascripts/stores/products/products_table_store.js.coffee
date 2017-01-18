@@ -46,8 +46,8 @@ dispatcher.register (payload) ->
       { product } = payload
 
       productId    = product.id
-      productIndex = _.findIndex(products, (p) -> p.id == productId)
       products     = ProductsTableStore.products
+      productIndex = _.findIndex(products, (p) -> p.id == productId)
 
       products.splice(productIndex, 1)
 
