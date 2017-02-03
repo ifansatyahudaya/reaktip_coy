@@ -7,20 +7,28 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
+    @product = Product.new(product_params)
 
-    if product.save
-      render json: product.as_json
-    else
-      render json: { errors: product.errors.full_messages.to_json, status: :unprocessable_entity }
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.json { render :show, status: :created, location: @product }
+      else
+        format.html { render :new }
+        format.json { render json: @product.errors.full_messages, status: :unprocessable_entity }
+      end
     end
   end
 
   def update
-    if @product.update(product_params)
-      render json: @product.as_json
-    else
-      render json: { errors: @product.errors.full_messages, status: :unprocessable_entity  }
+    respond_to do |format|
+      if @product.update(product_params)
+        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.json { render :show, status: :ok, location: @product }
+      else
+        format.html { render :edit }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
     end
   end
 
